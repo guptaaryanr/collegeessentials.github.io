@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>College Essentials</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header class="jumbotron">
+        <h1>The College Essentials Website</h1>
+    </header>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Welcome</a></li>
+            <li><a href="essentials.html">Essentials</a></li>
+            <li><a href="list.html">List</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div class="container">
+            <div id="newtask">
+                <input type="text" placeholder="Item">
+                <button id="push">Add</button>
+            </div>
+
+            <div id="tasks">
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            document.querySelector('#push').onclick = function () {
+                if (document.querySelector('#newtask input').value.length == 0) {
+                    alert("Please Enter a Task")
+                }
+
+                else {
+                    document.querySelector('#tasks').innerHTML += `
+            <div class="task">
+                <span id="taskname">
+                    ${document.querySelector('#newtask input').value}
+                </span>
+                <button class="delete">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </div>
+        `;
+
+                    var current_tasks = document.querySelectorAll(".delete");
+                    for (var i = 0; i < current_tasks.length; i++) {
+                        current_tasks[i].onclick = function () {
+                            this.parentNode.remove();
+                        }
+                    }
+                    var list = document.querySelector(".task");
+                    list.addEventListener('click', function (ev) {
+                        ev.target.classList.toggle('checked');
+                    }, false);
+                }
+            }
+        </script>
+    </section>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
